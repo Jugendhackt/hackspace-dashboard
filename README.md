@@ -8,5 +8,14 @@ The content on the webpage is generated with the database.
 
 Requirements
 =================
-MFRC522 Python Library
-https://github.com/mxgxw/MFRC522-python
+$ sudo apt-get install python-dev to install 
+
+SPI Python Library:
+$ git clone https://github.com/lthiery/SPI-Py.git
+$ cd SPI-Py
+$ sudo pyhton setup.py install
+
+MFRC522 Python Library:
+$ cd ..
+$ cd MFRC522-python
+$ git clone https://github.com/mxgxw/MFRC522-python
