@@ -7,10 +7,18 @@ $uid = $_GET['uid'];
 $sid = $_GET['sid'];
 $lin = $_GET['lin'];
 
-$dbConection = mysql_connect("localhost", "user", "12hallo")
+$dbConection = mysql_connect("localhost", "root")
 or die ("Keine verbindung zum DB Server.");
 
-mysql_select_db("lolroflkopter")
+mysql_select_db("hack")
 or die ("Die Datenbank existiert nicht.");
 
+if($lin == 1){
+    $sql = "INSERT INTO `hack`.`login` (`uID`, `sID`) VALUES ('".$uid."', '".$sid."');";
+    mysql_query($sql);
+} else {
+    $sql = "DELETE FROM `hack`.`login` WHERE uID = ".$uid.";";
+    mysql_query($sql);
+}
+echo 'ok';
 ?>
