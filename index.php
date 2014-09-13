@@ -11,24 +11,19 @@ include 'req/connect.php';
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
 <!-- Latest compiled and minified JavaScript -->
+<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <script src="req/inc.js"></script>
 <script>
-			function init() {
-				// create a map in the "map" div, set the view to a given place and zoom
-				var map = L.map('map').setView([51.505, -0.09], 13);
+		
+$(document).ready(function() {
+	$('.abc').click(function() {
+		$('.list-gruop-items').slideToggle('3000');
+	});
+}); 
 
-				// add an OpenStreetMap tile layer
-				L.tileLayer('http://tiles.odcdn.de/planet/{z}/{x}/{y}.png', {
-					attribution : '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-				}).addTo(map);
-
-				// add a marker in the given location, attach some popup content to it and open the popup
-				
-				L.marker([51.5, -0.09]).addTo(map).bindPopup('A pretty CSS3 popup. <br> Easily customizable.');
-			}
 </script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <title>HackSpace Dashboard</title>
@@ -60,17 +55,38 @@ include 'req/connect.php';
 				    echo 'Die MySQL-Abfrage ist fehlgeschlagen: ' . mysql_error();
 				    exit;
 				}
-				
-				while ($row = mysql_fetch_row($result)) {?>
-				<li><a href="#"><?php echo $row[1]; ?></a></li><?php 
-				} ?><div class="list-group">
-  					<a href="#" class="list-group-item active">
+
+				$schleifenvariable = 1;
+				while ($row = mysql_fetch_row($result)) {					// Abfrage von Space  echo $row[1];
+					?>   													
+					<li>
+						<div class="list-group">
+						 	<a href="#" class="list-group-item active">
+						    	<?php echo $row[1]; ?>
+						  	</a>
+						  	<div>
+							  	<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+							  	<a href="#" class="list-group-item">Morbi leo risus</a>
+							  	<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+							  	<a href="#" class="list-group-item">Vestibulum at eros</a>
+							</div>
+						</div>
+  					</li>
+
+					<?php 
+				} 
+				?>
+				<div class="list-group">
+  					<a href="#" class="list-group-item active" class="abc">
     					Cras justo odio
   					</a>
-  					<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-				  	<a href="#" class="list-group-item">Morbi leo risus</a>
-				  	<a href="#" class="list-group-item">Porta ac consectetur ac</a>
-				  	<a href="#" class="list-group-item">Vestibulum at eros</a>
+
+  					<div class="list-gruop-items">
+	  					<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+					  	<a href="#" class="list-group-item">Morbi leo risus</a>
+					  	<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+					  	<a href="#" class="list-group-item">Vestibulum at eros</a>
+					</div>
 				</div>
         </ul>
     </div>
