@@ -36,27 +36,16 @@ include 'req/connect.php';
 	<div class="col-sm-3 col-md-2 sidebar"> <!-- HackSpace Stationen in Side Bar -->
     	<ul class="nav nav-sidebar">
     		<?php 
-    			/*$result = mysql_query("SELECT * FROM space");
+    			
+    			$result = mysql_query("SELECT * FROM space");
 				if (!$result) {
 				    echo 'Die MySQL-Abfrage ist fehlgeschlagen: ' . mysql_error();
 				    exit;
 				}
-				$row = mysql_fetch_row($result);
-
-				echo $row[0]; // 42
-				echo $row[1]; // der email Wert*/ 
-
-				$abfrage = "SELECT * FROM space";
-				$ergebnis = mysql_query($abfrage);
-				while($row = mysql_fetch_object($ergebnis)) {
-				   echo "$row->name <br>";
-				  }
-
-			?>
-        	<li class="active"><a href="#">Overview</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
+				
+				while ($row = mysql_fetch_row($result)) {?>
+				<li><a href="#"><?php echo $row[1]; ?></a></li><?php 
+				} ?>
         </ul>
     </div>
     <section id="main">
