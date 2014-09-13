@@ -34,3 +34,7 @@ You can use [this](http://i.imgur.com/y7Fnvhq.png) image for reference.
 | GND  | Any   | Any Ground |
 | RST  | 22    | GPIO25     |
 | 3.3V | 1     | 3V3        |
+|      |       |            |
+| Login LED| 15| GPIO3      |
+| Logout LED| 16| GPIO4     |
+| Buzzer| 18   | GPIO5      |
