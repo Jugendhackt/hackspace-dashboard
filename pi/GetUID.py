@@ -5,6 +5,7 @@ import RPi.GPIO as GPIO
 import MFRC522
 import signal
 import urllib2
+import time
 
 continue_reading = True
 
@@ -14,6 +15,12 @@ def end_read(signal,frame):
     print "Ctrl+C captured, ending read."
     continue_reading = False
     GPIO.cleanup()
+
+# Setup IOs
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(15, GPIO.OUT)
+GPIO.setup(16, GPIO.OUT)
+GPIO.setup(18, GPIO.OUT)
 
 # Hook the SIGINT
 signal.signal(signal.SIGINT, end_read)
@@ -41,7 +48,27 @@ while continue_reading:
         print "Card read UID: "+str(uid[0])+","+str(uid[1])+","+str(uid[2])+","+str(uid[3])
 	print "Card read UID: "+str(uid[0]*pow(256,3)+uid[1]*pow(256,2)+uid[2]*pow(256,1)+uid[3]*pow(256,0))
         foo = urllib2.urlopen("http://100.109.222.188/juha/hackspace-dashboard/checkinout.php/?uid="+str(uid[0]*pow(256,3)+uid[1]*pow(256,2)+uid[2]*pow(256,1)+uid[3]*pow(256,0))+"&sid=1")
-	print foo.read()
+	bar=foo.read()
+	print bar
+	if bar == "inloged" :
+		GPIO.output(15, 1)
+                GPIO.output(18, 1)
+		time.sleep(0.1)
+		GPIO.output(18, 0)
+                time.sleep(0.9)
+                GPIO.output(15, 0)
+	else:
+		GPIO.output(16, 1)
+                GPIO.output(18, 1)
+                time.sleep(0.04)
+                GPIO.output(18, 0)
+                time.sleep(0.03)
+                GPIO.output(18, 1)
+                time.sleep(0.03)
+                GPIO.output(18, 0)
+		time.sleep(0.9)
+                GPIO.output(16, 0)
+
         # This is the default key for authentication
         key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
         
