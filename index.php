@@ -40,6 +40,7 @@
 		</article>
 	</section>
 	<div class="col-sm-3 col-md-2 sidebar navbar-inverse"> <!-- HackSpace Stationen -->
+	<div class="col-sm-3 col-md-2 sidebar"> <!-- HackSpace Stationen -->
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview</a></li>
             <li><a href="#">Reports</a></li>
