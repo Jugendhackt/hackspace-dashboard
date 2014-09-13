@@ -16,15 +16,6 @@ include 'req/connect.php';
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <script src="req/inc.js"></script>
-<script>
-		
-$(document).ready(function() {
-	$('.abc').click(function() {
-		$('.list-gruop-items').slideToggle('3000');
-	});
-}); 
-
-</script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <title>HackSpace Dashboard</title>
 </head>
@@ -58,17 +49,48 @@ $(document).ready(function() {
 
 				$schleifenvariable = 1;
 				while ($row = mysql_fetch_row($result)) {					// Abfrage von Space  echo $row[1];
-					?>   													
+					?>   
+					<script>
+						$(document).ready(function() {
+							$('#list<?php echo ').click(function() {
+								$('#down1').slideToggle('3000');
+							});
+						}); 
+
+					</script>													
 					<li>
 						<div class="list-group">
-						 	<a href="#" class="list-group-item active">
+						 	<a href="#" class="list-group-item active" id="list1">
 						    	<?php echo $row[1]; ?>
 						  	</a>
-						  	<div>
-							  	<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-							  	<a href="#" class="list-group-item">Morbi leo risus</a>
-							  	<a href="#" class="list-group-item">Porta ac consectetur ac</a>
-							  	<a href="#" class="list-group-item">Vestibulum at eros</a>
+						  	<div id="down1">
+						  		<?php 
+						  			$result2 = mysql_query("SELECT * FROM login WHERE sID LIKE '".$row[0]."' ");
+									if (!$result2) {
+									    echo 'Die MySQL-Abfrage ist fehlgeschlagen: ' . mysql_error();
+									    exit;
+									}
+
+									while ($row2 = mysql_fetch_row($result2)) {
+										$result3 = mysql_query("SELECT * FROM user WHERE uID LIKE '".$row2[0]."' ");
+										if (!$result3) {
+										    echo 'Die MySQL-Abfrage ist fehlgeschlagen: ' . mysql_error();
+										    exit;
+										} while ($row3 = mysql_fetch_row($result3)) { ?>
+											<div class="list-group-item">
+												<?php echo $row3[1] ?>
+												<br />
+												<a href="mailto:<?php $row3[2] ?>" >
+													<?php echo $row3[2] ?>
+												</a>
+												<br />
+												<?php echo $row3[3]; ?>
+											</div>
+
+										<?php
+										}
+									}
+						  		?>
 							</div>
 						</div>
   					</li>
@@ -76,18 +98,6 @@ $(document).ready(function() {
 					<?php 
 				} 
 				?>
-				<div class="list-group">
-  					<a href="#" class="list-group-item active" class="abc">
-    					Cras justo odio
-  					</a>
-
-  					<div class="list-gruop-items">
-	  					<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-					  	<a href="#" class="list-group-item">Morbi leo risus</a>
-					  	<a href="#" class="list-group-item">Porta ac consectetur ac</a>
-					  	<a href="#" class="list-group-item">Vestibulum at eros</a>
-					</div>
-				</div>
         </ul>
     </div>
     <section id="main">
