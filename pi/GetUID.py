@@ -22,13 +22,15 @@ GPIO.setup(15, GPIO.OUT)
 GPIO.setup(16, GPIO.OUT)
 GPIO.setup(18, GPIO.OUT)
 
-for i in range (0, 4):
+GPIO.output(18, 1)
+for i in range (0, 3):
 	GPIO.output(15, 1)
         GPIO.output(16, 1)
 	time.sleep(0.25)
         GPIO.output(15, 0)
         GPIO.output(16, 0)
 	time.sleep(0.25)
+GPIO.output(18, 0)
 
 # Hook the SIGINT
 signal.signal(signal.SIGINT, end_read)
