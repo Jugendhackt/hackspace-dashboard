@@ -1,7 +1,6 @@
-<?php
-$link = mysql_connect('localhost', 'lolroflkopter', 'penis', $db);
-if (!$link) {
-    die('Die Verbindug zur Datenbank ist abgebrochen: ' . mysql_error());
+<?php 
+$db = mysqli_connect("localhost", "root", "", "hack");
+if (!$db) {
+	die("Fehler beim Herstllen einer Verbindung zum MySQL-Server: ".mysqli_connect_error());
 }
-echo 'Erfolgreich verbunden';
 ?>
