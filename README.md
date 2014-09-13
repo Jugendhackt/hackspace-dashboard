@@ -8,4 +8,5 @@ The content on the webpage is generated with the database.
 
 Requirements
 =================
-MFRC522 Python Library https://github.com/mxgxw/MFRC522-python
+MFRC522 Python Library
+https://github.com/mxgxw/MFRC522-python
