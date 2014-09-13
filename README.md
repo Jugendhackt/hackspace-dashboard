@@ -6,8 +6,8 @@ You also can look up whether there is a person who can help you with your projec
 In the Hackspace will be a RFID reader attached to a Rasperry Pi running a Python scrip that accesses a database and updates the status.
 The content on the webpage is generated with the database.
 
-Requirements
-=================
+##Requirements
+
 $ sudo apt-get install python-dev to install 
 
 SPI Python Library:
@@ -19,3 +19,18 @@ MFRC522 Python Library:
 $ cd ..
 $ cd MFRC522-python
 $ git clone https://github.com/mxgxw/MFRC522-python
+
+
+## Pins
+You can use [this](http://i.imgur.com/y7Fnvhq.png) image for reference.
+
+| Name | Pin # | Pin name   |
+|------|-------|------------|
+| SDA  | 24    | GPIO8      |
+| SCK  | 23    | GPIO11     |
+| MOSI | 19    | GPIO10     |
+| MISO | 21    | GPIO9      |
+| IRQ  | None  | None       |
+| GND  | Any   | Any Ground |
+| RST  | 22    | GPIO25     |
+| 3.3V | 1     | 3V3        |
