@@ -22,6 +22,16 @@ GPIO.setup(15, GPIO.OUT)
 GPIO.setup(16, GPIO.OUT)
 GPIO.setup(18, GPIO.OUT)
 
+GPIO.output(18, 1)
+for i in range (0, 3):
+	GPIO.output(15, 1)
+        GPIO.output(16, 1)
+	time.sleep(0.25)
+        GPIO.output(15, 0)
+        GPIO.output(16, 0)
+	time.sleep(0.25)
+GPIO.output(18, 0)
+
 # Hook the SIGINT
 signal.signal(signal.SIGINT, end_read)
 
@@ -45,12 +55,10 @@ while continue_reading:
     if status == MIFAREReader.MI_OK:
 
         # Print UID
-        print "Card read UID: "+str(uid[0])+","+str(uid[1])+","+str(uid[2])+","+str(uid[3])
-	print "Card read UID: "+str(uid[0]*pow(256,3)+uid[1]*pow(256,2)+uid[2]*pow(256,1)+uid[3]*pow(256,0))
-        foo = urllib2.urlopen("http://100.109.222.188/juha/hackspace-dashboard/checkinout.php/?uid="+str(uid[0]*pow(256,3)+uid[1]*pow(256,2)+uid[2]*pow(256,1)+uid[3]*pow(256,0))+"&sid=1")
-	bar=foo.read()
-	print bar
-	if bar == "inloged" :
+        # print "Card read UID: "+str(uid[0])+","+str(uid[1])+","+str(uid[2])+","+str(uid[3])
+	# print "Card read UID: "+str(uid[0]*pow(256,3)+uid[1]*pow(256,2)+uid[2]*pow(256,1)+uid[3]*pow(256,0))
+        result = urllib2.urlopen("http://afrika2.dyn.askja.de:18000/dev/hackspace-dashboard/req/checkinout.php?uid="+str(uid[0]*pow(256,3)+uid[1]*pow(256,2)+uid[2]*pow(256,1)+uid[3]*pow(256,0))+"&sid=1")
+	if result.read() == "inloged" :
 		GPIO.output(15, 1)
                 GPIO.output(18, 1)
 		time.sleep(0.1)
