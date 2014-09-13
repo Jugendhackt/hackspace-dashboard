@@ -81,30 +81,13 @@ include 'req/connect.php';
     	<ul class="nav nav-sidebar">
     		<?php 
     			foreach ($hackerspaces as $i => $hackerspace) {
-					?>   
-					<script>												// JavaScript für Drop-Down
-						$(document).ready(function() {
-							$('#list').click(function() {
-								$('.down').slideToggle('3000');
-							});
-						}); 
-
-					</script>											<!-- Ausblenden von den Untermenus -->
-					<style type="text/css">							
-						.panel-body {
-							display: none;
-						}
-
-						.list-group:hover > .panel-body {
-							display: block;
-						}
-					</style>													
+					?>   													
 					<li>
 
 					<div class="panel panel-danger">
 						<div class="list-group panel-danger">
 							<div class="panel-heading panel-danger">
-						 	<h3 class="panel-title" id="list">
+						 	<h3 class="panel-title title" id="list">
 						    	<?php echo $hackerspace[1]; ?>
 						  	</h3>
 						  	</div>
@@ -145,5 +128,18 @@ include 'req/connect.php';
 	<footer>
 		
 	</footer>
+	<script>												// JavaScript für Drop-Down
+		$(document).ready(function() {
+			$('.title').click(function() {
+				$(this)
+					.parent()
+					.children(1)
+					.slideToggle('3000');
+					console.log($(this)
+					.parent()
+					.children(1));
+			});
+		}); 
+	</script>
 </body>
 </html>

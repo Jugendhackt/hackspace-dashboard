@@ -49,3 +49,16 @@ body {
  	-o-user-select: none;
   	user-select: none; 	
 }
+						
+.panel-body {
+	display: none; /*
+	-o-transition: max-height 0.3s ease-out;
+	-webkit-transition: max-height 0.3s ease-out;
+	-moz-transition: max-height 0.3s ease-out;
+	-ms-transition: max-height 0.3s ease-out;
+	transition: max-height 0.3s ease-out;
+}
+
+.list-group:hover > .panel-body {
+	display: block;*/
+}
