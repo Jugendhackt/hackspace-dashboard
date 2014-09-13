@@ -20,7 +20,7 @@ $row = @mysql_fetch_assoc($erg);
 if($row['uID'] == 0){
     $sql = "INSERT INTO `hack`.`login` (`uID`, `sID`) VALUES ('".mysql_real_escape_string($uid)."', '".mysql_real_escape_string($sid)."');";
     mysql_query($sql);
-    echo 'inloged ';
+    echo 'inloged';
 } else {
     $sql = "DELETE FROM `hack`.`login` WHERE uID = ".mysql_real_escape_string($uid).";";
     mysql_query($sql);
