@@ -12,10 +12,28 @@ include 'req/connect.php';
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src="req/inc.js"></script>
+<script>
+			function init() {
+				// create a map in the "map" div, set the view to a given place and zoom
+				var map = L.map('map').setView([51.505, -0.09], 13);
+
+				// add an OpenStreetMap tile layer
+				L.tileLayer('http://tiles.odcdn.de/planet/{z}/{x}/{y}.png', {
+					attribution : '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+				}).addTo(map);
+
+				// add a marker in the given location, attach some popup content to it and open the popup
+				
+				L.marker([51.5, -0.09]).addTo(map).bindPopup('A pretty CSS3 popup. <br> Easily customizable.');
+			}
+</script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <title>HackSpace Dashboard</title>
 </head>
-<body>
+<body onload="init()">
 	<header>
 		<nav class="navbar navbar-inverse  navbar-static-top" role="navigation">
 			<div class="container-fluid">
@@ -45,13 +63,21 @@ include 'req/connect.php';
 				
 				while ($row = mysql_fetch_row($result)) {?>
 				<li><a href="#"><?php echo $row[1]; ?></a></li><?php 
-				} ?>
+				} ?><div class="list-group">
+  					<a href="#" class="list-group-item active">
+    					Cras justo odio
+  					</a>
+  					<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+				  	<a href="#" class="list-group-item">Morbi leo risus</a>
+				  	<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+				  	<a href="#" class="list-group-item">Vestibulum at eros</a>
+				</div>
         </ul>
     </div>
     <section id="main">
 		<div class="container">
 			<article class="map">
-				<small>Map...</small>
+				<div id="map">.</div>
 			<article>
 		</div>
 	</section>
