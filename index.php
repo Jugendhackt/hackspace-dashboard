@@ -1,29 +1,55 @@
 <?php 
+
+// MySQL Connection
 include 'req/connect.php';
 ?>
+
+
+	<?php 
+
+		$hackerspaces = array();
+
+		$hackerspacesQuery = mysql_query("SELECT * FROM space");
+		while ($hackerSpace = mysql_fetch_row($hackerspacesQuery)) {							
+			$users = array();
+			$usersLoginQuery = mysql_query("SELECT * FROM login WHERE sID LIKE '".$hackerSpace[0]."' ");
+			while ($userLogin = mysql_fetch_row($usersLoginQuery)) {
+				$userQuery = mysql_query("SELECT * FROM user WHERE uID LIKE '".$userLogin[0]."' ");
+				$user = mysql_fetch_row($userQuery);
+				array_push($users, $user);
+			}
+
+			$hackerSpace['users'] = $users;
+			array_push($hackerspaces, $hackerSpace);
+		}
+
+	?>
+
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Latest compiled and minified CSS -->
+<!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
-<!-- Latest compiled and minified JavaScript -->
+<!-- Bootstrap JavaScript -->
 <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- Map CSS and JavaScript -->
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <script src="req/inc.js"></script>
+<!-- Generanal -->
 <link rel="stylesheet" type="text/css" href="css/style.css">
+
 <title>HackSpace Dashboard</title>
 </head>
 <body onload="init()">
 	<header>
 		<nav class="navbar navbar-inverse  navbar-static-top" role="navigation">
 			<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
 			     	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 			        	<span class="sr-only">Toggle navigation</span>
@@ -36,76 +62,76 @@ include 'req/connect.php';
 			</div><!-- /.container-fluid -->
 		</nav>
 	</header>
+	<!-- Side Bar -->
+
+<!--
+		foreach ($hackerspaces as $i => $hackerspace) {
+			echo $hackerspace[1]; // name
+			echo '<br />';
+
+			foreach ($hackerspace['users'] as $i => $user) {
+				echo '>> '.$user[1]; //name
+				echo '<br>';
+			}
+		}
+-->
+
 
 	<div class="col-sm-3 col-md-2 sidebar"> <!-- HackSpace Stationen in Side Bar -->
     	<ul class="nav nav-sidebar">
     		<?php 
-    			
-    			$result = mysql_query("SELECT * FROM space");
-				if (!$result) {
-				    echo 'Die MySQL-Abfrage ist fehlgeschlagen: ' . mysql_error();
-				    exit;
-				}
-
-				$schleifenvariable = 1;
-				while ($row = mysql_fetch_row($result)) {					// Abfrage von Space  echo $row[1];
+    			foreach ($hackerspaces as $i => $hackerspace) {
 					?>   
-					<script>
+					<script>												// JavaScript für Drop-Down
 						$(document).ready(function() {
-							$('#list<?php echo $schleifenvariable; ?>').click(function() {
-								$('#down<?php echo $schleifenvariable ?>').slideToggle('3000');
+							$('#list').click(function() {
+								$('.down').slideToggle('3000');
 							});
 						}); 
 
-					</script>
-					<style type="text/css">
-						#down<?php echo $schleifenvariable; ?> {
+					</script>											<!-- Ausblenden von den Untermenus -->
+					<style type="text/css">							
+						.panel-body {
 							display: none;
+						}
+
+						.list-group:hover > .panel-body {
+							display: block;
 						}
 					</style>													
 					<li>
-					<div class="panel panel-success">
-						<div class="list-group panel-success">
-							<div class="panel-heading panel-success">
-						 	<h3 class="panel-title" id="list<?php echo $schleifenvariable; ?>">
-						    	<?php echo $row[1]; ?>
+
+					<div class="panel panel-danger">
+						<div class="list-group panel-danger">
+							<div class="panel-heading panel-danger">
+						 	<h3 class="panel-title" id="list">
+						    	<?php echo $hackerspace[1]; ?>
 						  	</h3>
 						  	</div>
-						  	<div class="panel-body" id="down<?php echo $schleifenvariable; ?>">
-						  		<?php 
-						  			$result2 = mysql_query("SELECT * FROM login WHERE sID LIKE '".$row[0]."' ");
-									if (!$result2) {
-									    echo 'Die MySQL-Abfrage ist fehlgeschlagen: ' . mysql_error();
-									    exit;
-									}
-
-									while ($row2 = mysql_fetch_row($result2)) {
-										$result3 = mysql_query("SELECT * FROM user WHERE uID LIKE '".$row2[0]."' ");
-										if (!$result3) {
-										    echo 'Die MySQL-Abfrage ist fehlgeschlagen: ' . mysql_error();
-										    exit;
-										} while ($row3 = mysql_fetch_row($result3)) { ?>
+						  	<div class="panel-body">
+						  		<?php 		
+						  			foreach ($hackerspace['users'] as $i => $user) {
+						  			?>
 											<div class="list-group-item">
-												<?php echo $row3[1] ?>
+												<?php echo $user[1]; //name ?>
 												<br />
 												<a href="mailto:<?php $row3[2] ?>" >
-													<?php echo $row3[2] ?>
+													<?php echo $user[2] ?>
 												</a>
 												<br />
-												<?php echo $row3[3]; ?>
+												<?php echo $user[3]; ?>
 											</div>
 
 										<?php
-										}
-									}
+										}		// Ende der dritten While-Schleife
 						  		?>
 							</div>
 						</div>
-					</div> <?php $schleifenvariable ++; ?>
+					</div>
   					</li>
 
 					<?php 
-				} 
+				}								// Ende ersten While-Schleife 
 				?>
         </ul>
     </div>
