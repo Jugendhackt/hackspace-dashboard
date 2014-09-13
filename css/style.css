@@ -38,3 +38,7 @@ body {
 		height: 600px;
 	}
 }
+
+.list-group div{
+	display: none;
+}
