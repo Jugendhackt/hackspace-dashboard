@@ -64,27 +64,30 @@ include 'req/connect.php';
 						}
 					</style>													
 					<li>
-					<div class="panel panel-success">
-						<div class="list-group panel-success">
-							<div class="panel-heading panel-success">
-						 	<h3 class="panel-title" id="list<?php echo $schleifenvariable; ?>">
-						    	<?php echo $row[1]; ?>
-						  	</h3>
-						  	</div>
-						  	<div class="panel-body" id="down<?php echo $schleifenvariable; ?>">
-						  		<?php 
-						  			$result2 = mysql_query("SELECT * FROM login WHERE sID LIKE '".$row[0]."' ");
-									if (!$result2) {
-									    echo 'Die MySQL-Abfrage ist fehlgeschlagen: ' . mysql_error();
-									    exit;
-									}
-
-									while ($row2 = mysql_fetch_row($result2)) {
+					<?php 
+						$result2 = mysql_query("SELECT * FROM login WHERE sID LIKE '".$row[0]."' ");
+						if (!$result2) {
+							echo 'Die MySQL-Abfrage ist fehlgeschlagen: ' . mysql_error();
+							exit;
+						} while ($row2 = mysql_fetch_row($result2)) {
+ 
+						?>
+							<div class="panel panel-success">
+								<div class="list-group panel-success">
+									<div class="panel-heading panel-success">
+									 	<h3 class="panel-title" id="list<?php echo $schleifenvariable; ?>">
+									    	<?php echo $row[1]; ?>
+									  	</h3>
+						  			</div>
+						  			<div class="panel-body" id="down<?php echo $schleifenvariable; ?>">
+						  			<?php 
 										$result3 = mysql_query("SELECT * FROM user WHERE uID LIKE '".$row2[0]."' ");
 										if (!$result3) {
 										    echo 'Die MySQL-Abfrage ist fehlgeschlagen: ' . mysql_error();
 										    exit;
-										} while ($row3 = mysql_fetch_row($result3)) { ?>
+										}
+
+										while ($row3 = mysql_fetch_row($result3)) { ?>
 											<div class="list-group-item">
 												<?php echo $row3[1] ?>
 												<br />
@@ -96,13 +99,14 @@ include 'req/connect.php';
 											</div>
 
 										<?php
-										}
-									}
+										}?>
+									</div>
+								</div>
+							</div> <?php $schleifenvariable ++;
+
+							}
 						  		?>
-							</div>
-						</div>
-					</div> <?php $schleifenvariable ++; ?>
-  					</li>
+						</li>
 
 					<?php 
 				} 
