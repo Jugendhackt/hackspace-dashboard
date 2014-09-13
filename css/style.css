@@ -39,6 +39,8 @@ body {
 	}
 }
 
-.list-group div{
-	display: none;
+
+
+#down1 {
+	display: block;
 }
