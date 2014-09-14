@@ -175,7 +175,7 @@ include 'req/connect.php';
 							}
 						?>
 						icon : <?php echo $color; ?>
-					}).addTo(map).bindPopup('<?php echo $hackerspace[1]; ?>');
+					}).addTo(map).bindPopup('<a href="#<?php echo $hackerspace[1]; ?>"><?php echo $hackerspace[1]; ?></a>');
 				<?php }
 
 			?>
