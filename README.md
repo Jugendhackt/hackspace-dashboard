@@ -23,6 +23,17 @@ MFRC522 Python Library:
     git clone https://github.com/mxgxw/MFRC522-python
 
 
+Webserver:
+
+is a simple apache2 server with PHP and MySQL:
+
+    sudo apt-get update
+    sudo apt-get install apache2 php5 libapache2-mod-php5 mysql-client php5-mysql
+    
+and on the MySQL server:
+
+    sudo apt-get install mysql-client mysql-server
+
 ## Pins
 You can use [this](http://i.imgur.com/y7Fnvhq.png) image for reference.
 
