@@ -32,7 +32,7 @@ is a simple apache2 server with PHP and MySQL:
     
 and on the MySQL server:
 
-    sudo apt-get install mysql-client mysql-server
+    sudo apt-get install mysql-server
 
 ## Pins
 You can use [this](http://i.imgur.com/y7Fnvhq.png) image for reference.
