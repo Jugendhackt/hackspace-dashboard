@@ -52,14 +52,13 @@ include 'req/connect.php';
 			<div class="container">
 			<div class="container-fluid">
 				<div class="navbar-header">
-			     	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-			        	<span class="sr-only">Toggle navigation</span>
-			        	<span class="icon-bar"></span>
-			        	<span class="icon-bar"></span>
-			        	<span class="icon-bar"></span>
-			      	</button>
 			      	<a class="navbar-brand" href="index.php">HackSpace Dashboard</a>
-				</div> 
+				</div>
+				<form class="navbar-form navbar-right" role="search">
+        			<div class="form-group">
+          				<!--<input onkeyup="showUser(this.value)" type="text" class="form-control" placeholder="Search" autofocus>-->
+        			</div>
+      			</form> 
 			</div><!-- /.container-fluid -->
 			</div>
 		</nav>
@@ -79,7 +78,7 @@ include 'req/connect.php';
 -->
 
 
-	<div class="col-sm-3 col-md-2 sidebar"> <!-- HackSpace Stationen in Side Bar -->
+	<div class="col-sm-3 col-md-2 sidebar" id="txtHint"> <!-- HackSpace Stationen in Side Bar -->
     	<ul class="nav nav-sidebar">
     		<?php 
     			foreach ($hackerspaces as $i => $hackerspace) {
@@ -89,7 +88,7 @@ include 'req/connect.php';
 					<div class="panel panel-<?php echo $color; ?>">
 
 						<?php
-							if(empty($hackerspace['users'][1])) {
+							if($hackerspace['users'][1] == '') {
 								$color = "danger";
 							} else {
 								$color = "success";
@@ -191,10 +190,30 @@ include 'req/connect.php';
 
 			?>
 
-			/*L.marker([52.530592, 13.413454], {
-				icon : ic?>
-			}).addTo(map).bindPopup('A pretty CSS3 popup. <br> Easily customizable.');*/
 		}
+
+		function showUser(str) {
+  			if (str=="") {
+    			document.getElementById("txtHint").innerHTML="";
+    			return;
+  			}
+			  
+			if (window.XMLHttpRequest) {
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+			    xmlhttp=new XMLHttpRequest();
+			} else { // code for IE6, IE5
+			    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			
+			xmlhttp.onreadystatechange=function() {
+				if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			      document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+			    }
+			}
+			  
+			xmlhttp.open("GET","search.php?q="+str,true);
+			xmlhttp.send();
+			}
 	</script>
 </body>
 </html>
