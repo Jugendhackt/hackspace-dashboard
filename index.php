@@ -56,7 +56,7 @@ include 'req/connect.php';
 				</div>
 				<form class="navbar-form navbar-right" role="search">
         			<div class="form-group">
-          				<input type="text" class="form-control" placeholder="Search">
+          				<input onkeyup="showUser(this.value)" type="text" class="form-control" placeholder="Search" autofocus>
         			</div>
       			</form> 
 			</div><!-- /.container-fluid -->
@@ -78,7 +78,7 @@ include 'req/connect.php';
 -->
 
 
-	<div class="col-sm-3 col-md-2 sidebar"> <!-- HackSpace Stationen in Side Bar -->
+	<div class="col-sm-3 col-md-2 sidebar" id="txtHint"> <!-- HackSpace Stationen in Side Bar -->
     	<ul class="nav nav-sidebar">
     		<?php 
     			foreach ($hackerspaces as $i => $hackerspace) {
@@ -190,10 +190,30 @@ include 'req/connect.php';
 
 			?>
 
-			/*L.marker([52.530592, 13.413454], {
-				icon : ic?>
-			}).addTo(map).bindPopup('A pretty CSS3 popup. <br> Easily customizable.');*/
 		}
+
+		function showUser(str) {
+  			if (str=="") {
+    			document.getElementById("txtHint").innerHTML="";
+    			return;
+  			}
+			  
+			if (window.XMLHttpRequest) {
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+			    xmlhttp=new XMLHttpRequest();
+			} else { // code for IE6, IE5
+			    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			
+			xmlhttp.onreadystatechange=function() {
+				if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			      document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+			    }
+			}
+			  
+			xmlhttp.open("GET","search.php?q="+str,true);
+			xmlhttp.send();
+			}
 	</script>
 </body>
 </html>

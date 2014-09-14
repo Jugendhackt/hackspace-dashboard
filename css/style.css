@@ -68,8 +68,11 @@ footer {
 	text-align: center !important;
 }
 
-color: #a94442
-
 .panel-success a:hover {
-	color: #3C763D !important;
+	color: #3C763D;
+}
+
+
+.panel-danger a:hover {
+	color: #a94442;
 }
