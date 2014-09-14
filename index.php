@@ -86,7 +86,7 @@ include 'req/connect.php';
 					?>   													
 					<li>
 
-					<div class="panel panel-danger">
+					<div class="panel panel-<?php echo $color; ?>">
 
 						<?php
 							if(empty($hackerspace['users'][1])) {
