@@ -112,10 +112,7 @@ include 'req/connect.php';
 						  			foreach ($hackerspace['users'] as $i => $user) {
 						  			?>
 											<div class="list-group-item">
-												<?php echo $user[1]; //name
-												if(!isset($hackerspace['users'][0])) {
-												echo "Closed";
-												} ?>
+												<?php echo $user[1]; //name?>
 												<br />
 												<a href="mailto:<?php $row3[2] ?>" >
 													<?php echo $user[2] ?>
@@ -126,6 +123,9 @@ include 'req/connect.php';
 
 										<?php
 										}		// Ende der dritten While-Schleife
+										if(!isset($hackerspace['users'][0])) {
+											echo "Closed";
+											} 
 						  		?>
 							</div>
 						</div>
