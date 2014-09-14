@@ -158,7 +158,7 @@ include 'req/connect.php';
 	</footer>
 	<script> 
 		function init() {
-			var map = L.map('map').setView([52.530592, 13.413454], 13);
+			var map = L.map('map').setView([52.530592, 13.413454], 12);
 
 			L.tileLayer('http://tiles.odcdn.de/planet/{z}/{x}/{y}.png', {
 				attribution : '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
