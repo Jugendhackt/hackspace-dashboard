@@ -85,7 +85,16 @@ include 'req/connect.php';
 					<li>
 
 					<div class="panel panel-danger">
-						<div class="list-group panel-danger">
+
+						<?php
+							if(empty($hackerspace['users'][1])) {
+								$color = "danger";
+							} else {
+								$color = "success";
+							}
+						?>
+
+						<div class="list-group panel-<?php echo $color; ?>">
 							<div class="panel-heading panel-danger">
 						 	<h3 class="panel-title title" id="list">
 						    	<?php echo $hackerspace[1]; ?>
@@ -128,19 +137,7 @@ include 'req/connect.php';
 	<footer>
 		
 	</footer>
-	<script>												// JavaScript für Drop-Down
-		$(document).ready(function() {
-			$('.title').click(function() {
-				$(this)
-					.parent()
-					.children(1)
-					.slideToggle('3000');
-					console.log($(this)
-					.parent()
-					.children(1));
-			});
-		}); 
-
+	<script> 
 		function init() {
 			var map = L.map('map').setView([52.530592, 13.413454], 13);
 
