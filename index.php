@@ -103,7 +103,7 @@ include 'req/connect.php';
 						</style>
 
 						<div class="list-group panel-<?php echo $color; ?>">
-							<div class="panel-heading panel-danger">
+							<div class="panel-heading panel-<?php echo $color; ?>">
 						 	<a class="panel-title title" id="list" href="#<?php echo  $hackerspace[1]; ?>">
 						    	<?php echo $hackerspace[1]; ?>
 						  	</a>
