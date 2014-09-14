@@ -59,6 +59,6 @@ body {
 	transition: max-height 0.3s ease-out;
 }
 
-.list-group:hover > .panel-body {
+.list-group:target > .panel-body {
 	display: block;
 }

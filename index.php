@@ -94,13 +94,19 @@ include 'req/connect.php';
 							}
 						?>
 
+						<style type="text/css">
+						#<?php echo  $hackerspace[1]; ?>:target {
+							display: block;
+						}
+						</style>
+
 						<div class="list-group panel-<?php echo $color; ?>">
 							<div class="panel-heading panel-danger">
-						 	<h3 class="panel-title title" id="list">
+						 	<a class="panel-title title" id="list" href="#<?php echo  $hackerspace[1]; ?>">
 						    	<?php echo $hackerspace[1]; ?>
-						  	</h3>
+						  	</a>
 						  	</div>
-						  	<div class="panel-body">
+						  	<div class="panel-body" id="<?php echo  $hackerspace[1]; ?>">
 						  		<?php 		
 						  			foreach ($hackerspace['users'] as $i => $user) {
 						  			?>
