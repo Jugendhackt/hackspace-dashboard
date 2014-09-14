@@ -52,14 +52,13 @@ include 'req/connect.php';
 			<div class="container">
 			<div class="container-fluid">
 				<div class="navbar-header">
-			     	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-			        	<span class="sr-only">Toggle navigation</span>
-			        	<span class="icon-bar"></span>
-			        	<span class="icon-bar"></span>
-			        	<span class="icon-bar"></span>
-			      	</button>
 			      	<a class="navbar-brand" href="index.php">HackSpace Dashboard</a>
-				</div> 
+				</div>
+				<form class="navbar-form navbar-right" role="search">
+        			<div class="form-group">
+          				<input type="text" class="form-control" placeholder="Search">
+        			</div>
+      			</form> 
 			</div><!-- /.container-fluid -->
 			</div>
 		</nav>
