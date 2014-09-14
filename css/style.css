@@ -62,3 +62,8 @@ body {
 .list-group:hover > .panel-body {
 	display: block;
 }
+
+footer {
+	bottom: 0;
+	text-align: center !important;
+}
