@@ -112,7 +112,10 @@ include 'req/connect.php';
 						  			foreach ($hackerspace['users'] as $i => $user) {
 						  			?>
 											<div class="list-group-item">
-												<?php echo $user[1]; //name ?>
+												<?php echo $user[1]; //name
+												if(!isset($hackerspace['users'][0])) {
+												echo "Closed";
+												} ?>
 												<br />
 												<a href="mailto:<?php $row3[2] ?>" >
 													<?php echo $user[2] ?>
