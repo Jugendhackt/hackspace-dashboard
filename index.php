@@ -40,7 +40,7 @@ include 'req/connect.php';
 <!-- Map CSS and JavaScript -->
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-<script src="req/inc.js"></script>
+<!-- <script src="req/inc.js"></script> -->
 <!-- Generanal -->
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
@@ -140,6 +140,40 @@ include 'req/connect.php';
 					.children(1));
 			});
 		}); 
+
+		function init() {
+			var map = L.map('map').setView([52.530592, 13.413454], 13);
+
+			L.tileLayer('http://tiles.odcdn.de/planet/{z}/{x}/{y}.png', {
+				attribution : '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+			}).addTo(map);
+			
+			var iconred = L.icon({
+				iconUrl : 'img/flag.png',
+				iconSize : [25, 38],
+				iconAnchor : [1, 19],
+				popupAnchor : [12, -15]
+			});
+			var icongreen = L.icon({
+				iconUrl : 'img/flag2.png',
+				iconSize : [25, 38],
+				iconAnchor : [1, 19],
+				popupAnchor : [12, -15]
+			});
+			
+			<?php 
+				foreach ($hackerspaces as $i => $hackerspace) {?>
+					L.marker([<?php echo $hackerspace[2]; ?>, <?php echo $hackerspace[3]; ?>], {
+						icon : icongreen
+					}).addTo(map).bindPopup('<?php echo $hackerspace[1]; ?>');
+				<?php }
+
+			?>
+
+			/*L.marker([52.530592, 13.413454], {
+				icon : ic?>
+			}).addTo(map).bindPopup('A pretty CSS3 popup. <br> Easily customizable.');*/
+		}
 	</script>
 </body>
 </html>
