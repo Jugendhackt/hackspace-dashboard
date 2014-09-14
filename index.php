@@ -49,6 +49,7 @@ include 'req/connect.php';
 <body onload="init()">
 	<header>
 		<nav class="navbar navbar-inverse  navbar-static-top" role="navigation">
+			<div class="container">
 			<div class="container-fluid">
 				<div class="navbar-header">
 			     	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -60,6 +61,7 @@ include 'req/connect.php';
 			      	<a class="navbar-brand" href="index.php">HackSpace Dashboard</a>
 				</div> 
 			</div><!-- /.container-fluid -->
+			</div>
 		</nav>
 	</header>
 	<!-- Side Bar -->
@@ -84,7 +86,7 @@ include 'req/connect.php';
 					?>   													
 					<li>
 
-					<div class="panel panel-danger">
+					<div class="panel panel-<?php echo $color; ?>">
 
 						<?php
 							if(empty($hackerspace['users'][1])) {
@@ -101,7 +103,7 @@ include 'req/connect.php';
 						</style>
 
 						<div class="list-group panel-<?php echo $color; ?>">
-							<div class="panel-heading panel-danger">
+							<div class="panel-heading panel-<?php echo $color; ?>">
 						 	<a class="panel-title title" id="list" href="#<?php echo  $hackerspace[1]; ?>">
 						    	<?php echo $hackerspace[1]; ?>
 						  	</a>
@@ -141,7 +143,16 @@ include 'req/connect.php';
 		</div>
 	</section>
 	<footer>
-		
+		<nav class="navbar navbar-inverse  navbar-fixed-bottom" role="navigation">
+			<div class="container">
+			<div class="container-fluid">
+				<div class="navbar-header">
+			      	<a class="navbar-brand" href="http://jugendhackt.de">&copy; 2014 Jugendhackt</a>
+			      	<a class="navbar-brand" href="https://github.com/Jugendhackt/hackspace-dashboard">GitHub</a>
+				</div> 
+			</div><!-- /.container-fluid -->
+			</div>
+		</nav>
 	</footer>
 	<script> 
 		function init() {
