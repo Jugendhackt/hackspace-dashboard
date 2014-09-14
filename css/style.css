@@ -51,7 +51,7 @@ body {
 }
 						
 .panel-body {
-	display: none; /*
+	display: none;
 	-o-transition: max-height 0.3s ease-out;
 	-webkit-transition: max-height 0.3s ease-out;
 	-moz-transition: max-height 0.3s ease-out;
@@ -60,5 +60,5 @@ body {
 }
 
 .list-group:hover > .panel-body {
-	display: block;*/
+	display: block;
 }

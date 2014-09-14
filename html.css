@@ -1,0 +1,15 @@
+html {
+    background-color: #EFEFEF;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+div#wrapper {
+    margin: 100px auto;
+}
+div#content {
+    clear: both;
+
+    margin-top: 100px;
+}
