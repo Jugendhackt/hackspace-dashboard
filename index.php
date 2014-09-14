@@ -88,7 +88,7 @@ include 'req/connect.php';
 					<div class="panel panel-<?php echo $color; ?>">
 
 						<?php
-							if(!isset($hackerspace['users'][1])) {
+							if(!isset($hackerspace['users'][0])) {
 								$color = "danger";
 							} else {
 								$color = "success";
@@ -178,7 +178,7 @@ include 'req/connect.php';
 				foreach ($hackerspaces as $i => $hackerspace) {?>
 					L.marker([<?php echo $hackerspace[2]; ?>, <?php echo $hackerspace[3]; ?>], {
 						<?php
-							if(!isset($hackerspace['users'][1])) {
+							if(!isset($hackerspace['users'][0])) {
 								$color = "iconred";
 							} else {
 								$color = "icongreen";
