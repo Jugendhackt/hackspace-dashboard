@@ -56,7 +56,7 @@ include 'req/connect.php';
 				</div>
 				<form class="navbar-form navbar-right" role="search">
         			<div class="form-group">
-          				<input onkeyup="showUser(this.value)" type="text" class="form-control" placeholder="Search" autofocus>
+          				<!--<input onkeyup="showUser(this.value)" type="text" class="form-control" placeholder="Search" autofocus>-->
         			</div>
       			</form> 
 			</div><!-- /.container-fluid -->
