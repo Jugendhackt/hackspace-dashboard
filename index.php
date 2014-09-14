@@ -161,7 +161,14 @@ include 'req/connect.php';
 			<?php 
 				foreach ($hackerspaces as $i => $hackerspace) {?>
 					L.marker([<?php echo $hackerspace[2]; ?>, <?php echo $hackerspace[3]; ?>], {
-						icon : icongreen
+						<?php
+							if(empty($hackerspace['users'][1])) {
+								$color = "iconred";
+							} else {
+								$color = "icongreen";
+							}
+						?>
+						icon : <?php echo $color; ?>
 					}).addTo(map).bindPopup('<?php echo $hackerspace[1]; ?>');
 				<?php }
 
