@@ -88,7 +88,7 @@ include 'req/connect.php';
 					<div class="panel panel-<?php echo $color; ?>">
 
 						<?php
-							if(empty($hackerspace['users'][1])) {
+							if($hackerspace['users'][1] == '') {
 								$color = "danger";
 							} else {
 								$color = "success";
