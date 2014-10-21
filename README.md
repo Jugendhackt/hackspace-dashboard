@@ -55,4 +55,4 @@ You can use [this](http://i.imgur.com/y7Fnvhq.png) image for reference.
 
 ##Website:
 
-http://hackspace-dashboard.no-ip.org/
+http://afrika2.dyn.askja.de:18000/dev/hackspace-dashboard/
