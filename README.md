@@ -8,13 +8,13 @@ The content on the webpage is generated with the database.
 
 ##Requirements (raspberry pi)
 
-    sudo apt-get install python-dev to install 
+    sudo apt-get install python-dev
 
 SPI Python Library:
 
     git clone https://github.com/lthiery/SPI-Py.git
     cd SPI-Py
-    sudo pyhton setup.py install
+    sudo python setup.py install
 
 MFRC522 Python Library:
 
