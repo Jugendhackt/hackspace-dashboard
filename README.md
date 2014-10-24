@@ -21,6 +21,18 @@ MFRC522 Python Library:
     cd ..
     cd MFRC522-python
     git clone https://github.com/mxgxw/MFRC522-python
+    
+run the card-detect script:
+
+    sudo python pi/GetUID.py
+
+if there is an error like
+
+    can't open device: No such file or directory
+    
+then try
+
+    sudo modprobe spi-bcm2708
 
 
 Webserver:
