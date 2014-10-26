@@ -1,29 +1,24 @@
 <?php 
-
+error_reporting(0);
 // MySQL Connection
 include 'req/connect.php';
-?>
 
 
-	<?php 
+$hackerspaces = array();
 
-		$hackerspaces = array();
-
-		$hackerspacesQuery = mysql_query("SELECT * FROM space");
-		while ($hackerSpace = mysql_fetch_row($hackerspacesQuery)) {							
-			$users = array();
-			$usersLoginQuery = mysql_query("SELECT * FROM login WHERE sID LIKE '".$hackerSpace[0]."' ");
-			while ($userLogin = mysql_fetch_row($usersLoginQuery)) {
-				$userQuery = mysql_query("SELECT * FROM user WHERE uID LIKE '".$userLogin[0]."' ");
-				$user = mysql_fetch_row($userQuery);
-				array_push($users, $user);
-			}
-
-			$hackerSpace['users'] = $users;
-			array_push($hackerspaces, $hackerSpace);
+$hackerspacesQuery = mysql_query("SELECT * FROM space");
+while ($hackerSpace = mysql_fetch_row($hackerspacesQuery)) {							
+	$users = array();
+	$usersLoginQuery = mysql_query("SELECT * FROM login WHERE sID LIKE '".$hackerSpace[0]."' ");
+		while ($userLogin = mysql_fetch_row($usersLoginQuery)) {
+			$userQuery = mysql_query("SELECT * FROM user WHERE uID LIKE '".$userLogin[0]."' ");
+			$user = mysql_fetch_row($userQuery);
+			array_push($users, $user);
 		}
-
-	?>
+		$hackerSpace['users'] = $users;
+		array_push($hackerspaces, $hackerSpace);
+	}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -63,21 +58,8 @@ include 'req/connect.php';
 			</div>
 		</nav>
 	</header>
+	
 	<!-- Side Bar -->
-
-<!--
-		foreach ($hackerspaces as $i => $hackerspace) {
-			echo $hackerspace[1]; // name
-			echo '<br />';
-
-			foreach ($hackerspace['users'] as $i => $user) {
-				echo '>> '.$user[1]; //name
-				echo '<br>';
-			}
-		}
--->
-
-
 	<div class="col-sm-3 col-md-2 sidebar" id="txtHint"> <!-- HackSpace Stationen in Side Bar -->
     	<ul class="nav nav-sidebar">
     		<?php 
@@ -114,7 +96,7 @@ include 'req/connect.php';
 											<div class="list-group-item">
 												<?php echo $user[1]; //name?>
 												<br />
-												<a href="mailto:<?php $row3[2] ?>" >
+												<a href="mailto:<?php $user[2] ?>" >
 													<?php echo $user[2] ?>
 												</a>
 												<br />
@@ -133,8 +115,8 @@ include 'req/connect.php';
   					</li>
 
 					<?php 
-				}								// Ende ersten While-Schleife 
-				?>
+					}
+					?>
         </ul>
     </div>
     <section id="main">
