@@ -7,6 +7,8 @@ import signal
 import urllib2
 import time
 
+URL = "http://exemple.com/hackspace-dashboard/req/checkinout.php"
+
 continue_reading = True
 
 # Capture SIGINT for cleanup when the script is aborted
@@ -57,7 +59,7 @@ while continue_reading:
         # Print UID
         # print "Card read UID: "+str(uid[0])+","+str(uid[1])+","+str(uid[2])+","+str(uid[3])
 	# print "Card read UID: "+str(uid[0]*pow(256,3)+uid[1]*pow(256,2)+uid[2]*pow(256,1)+uid[3]*pow(256,0))
-        result = urllib2.urlopen("http://afrika2.dyn.askja.de:18000/dev/hackspace-dashboard/req/checkinout.php?uid="+str(uid[0]*pow(256,3)+uid[1]*pow(256,2)+uid[2]*pow(256,1)+uid[3]*pow(256,0))+"&sid=1")
+        result = urllib2.urlopen(URL + "?uid="+str(uid[0]*pow(256,3)+uid[1]*pow(256,2)+uid[2]*pow(256,1)+uid[3]*pow(256,0))+"&sid=1")
 	if result.read() == "inloged" :
 		GPIO.output(15, 1)
                 GPIO.output(18, 1)
