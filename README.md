@@ -59,8 +59,3 @@ You can use [this](http://i.imgur.com/y7Fnvhq.png) image for reference.
 | Login LED| 15| GPIO3      |
 | Logout LED| 16| GPIO4     |
 | Buzzer| 18   | GPIO5      |
-
-
-##Website:
-
-http://afrika2.dyn.askja.de:18000/dev/hackspace-dashboard/
